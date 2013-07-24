@@ -197,10 +197,14 @@ class Freezer
             $uri = substr($uri, 0, $pos - 1);
         }
 
-        if (substr($uri, -1, 1) === '/') {
-            $file = $uri . "index.html";
+        if (substr($uri, -5) !== '.html') {
+            if (substr($uri, -1, 1) === '/') {
+                $file = $uri . "index.html";
+            } else {
+                $file = "$uri.html";
+            }
         } else {
-            $file = "$uri.html";
+            $file = $uri;
         }
 
         if (!substr($file, 0, 1) === '/') {
